@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Background Changer</title>
+    <style>
+        div{
+            text-align: center;
+            vertical-align: middle;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+        span{
+            font-size:60px;
+            text-shadow: 0 0 5px white;
+        }
+        input{
+            width: 140px;
+            height: 54px;
+            font-size: 20px;
+            color: white;
+            background-color: lightgray;
+            border-radius: 8px;
+            border: 0;
+            outline: none;
+            box-shadow: 0 6px 4px darkgray;
+        }
+        input:hover{
+            background-color: gray;
+        }
+        input:active {
+            background-color: gray;
+            box-shadow: 0 6px 4px #666;
+            transform: translateY(4px);
+        }
+    </style>
+    <script>
+        let hexCode = "#";
+        let hex = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+        let clickMe = {
+            randomNo:function(){
+                hexCode = "#";
+                var i = 0;
+                while(i<6){
+                hexCode = hexCode + hex[Math.floor(Math.random() * hex.length)];
+                i++;
+                }
+            },
+            applicator: function(hexNo){
+                document.querySelector("body").style.backgroundColor= hexNo;
+                document.getElementById("code").textContent= hexNo;
+            }
+        }
+
+        function backgroundChanger(){
+            clickMe.randomNo();
+            clickMe.applicator(hexCode);
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <p>
+            <span>HEX COLOR:</span>
+            <span id=code>Initial</span>
+        </p>
+        <input type="button" value="CLICK ME" onclick ="backgroundChanger();">
+    </div>
+</body>
+</html>
